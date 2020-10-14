@@ -94,6 +94,26 @@ async def test_list():
     assert await Schema.dump(data) == data
 
 
+async def test_list_field():
+    class Name(iko.Field):
+        pass
+
+    class Schema(iko.Schema):
+        owners = iko.List(Name)
+        friends = iko.List(Name())
+
+    data = {
+        'owners': [
+            'Alice',
+            'Bob',
+        ],
+        'friends': ['Eve'],
+    }
+
+    assert await Schema.load(data) == data
+    assert await Schema.dump(data) == data
+
+
 async def test_default():
     class Schema(iko.Schema):
         field42 = iko.Field(default=42)
