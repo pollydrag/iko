@@ -99,8 +99,8 @@ async def test_list_field():
         pass
 
     class Schema(iko.Schema):
-        owners = iko.List(Name)
-        friends = iko.List(Name())
+        owners = iko.List(field=Name)
+        friends = iko.List(field=Name())
 
     data = {
         'owners': [
