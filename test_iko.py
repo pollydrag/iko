@@ -24,8 +24,11 @@ async def test_context():
 
     ctx = {'private_offset': 1}
 
-    assert await Schema.load({'secret': 'moon'}, context=ctx) == {'secret': 'bnBwbw=='}
-    assert await Schema.dump({'secret': 'bnBwbw=='}, context=ctx) == {'secret': 'moon'}
+    load_data = {'secret': 'moon'}
+    dump_data = {'secret': 'bnBwbw=='}
+
+    assert await Schema.load(load_data, context=ctx) == dump_data
+    assert await Schema.dump(dump_data, context=ctx) == load_data
 
 
 async def test_dump_to():
